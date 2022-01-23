@@ -35,7 +35,7 @@ const Axis = (cartInfo: ICartesianInfo, axis: 'x'|'y') => {
     const pos = posReference + i*separatorSpace
     Separators.push(Separator(pos))
     AuxLines.push(AuxLine(pos))
-    SeparatorNumbers.push(SeparatorNumber(i, pos))
+    SeparatorNumbers.push(SeparatorNumber(-i, pos))
   }
   for( let i=1; (i*separatorSpace) < posReference; i++) {
     const pos = posReference - i*separatorSpace
@@ -78,9 +78,11 @@ const CartesianPlan = () => {
     setYAxis(Axis(cartesianInfo, 'y'))
   },[cartesianInfo])
 
-  return <div className={styles.CartesianContainer} ref={cartesianRef}>
-    {xAxis}
-    {yAxis}
+  return <div className={styles.CartesianContainer}>
+    <div className={styles.CartesianPlan} ref={cartesianRef}>
+      {xAxis}
+      {yAxis}
+    </div>
   </div>
 }
 
