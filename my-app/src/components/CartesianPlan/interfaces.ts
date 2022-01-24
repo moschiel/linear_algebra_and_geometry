@@ -1,15 +1,15 @@
+import React from "react";
 
 export interface ICartesianInfo {
-  size: ICartesianSize,
-  center: ICartesianCenter
-}
-
-export interface ICartesianSize {
-  width: number,
-  height: number
-}
-
-export interface ICartesianCenter {
-  x: number,
-  y: number
+  canvasRef: React.MutableRefObject<HTMLCanvasElement>,
+  axisInfo: {
+    pixels: {
+      unitScale: number,
+      size: { width: number, height: number },
+      center: { x: number, y: number }
+    },
+    coordinates: {
+      limits: { x: number, y: number },
+    }
+  }
 }
