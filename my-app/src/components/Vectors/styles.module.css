@@ -1,0 +1,23 @@
+.FormContainer {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+}
+
+.InputContainer {
+  display: flex;
+  margin-top: 10px;
+}
+.InputContainer > label {
+  min-width: 25px;
+}
+.InputContainer > input {
+  width: 100px;
+  margin-right: 10px;
+}
+
+.FormContainer button {
+  margin-top: 10px;
+  margin-left: 25px;
+  width: 100px;
+}
