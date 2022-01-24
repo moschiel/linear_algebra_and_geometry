@@ -5,6 +5,14 @@ import { CartesianContext } from '../../contexts/CartesianContext';
 
 const separatorSize = 10
 
+export const CoordinateToPixels = (cartInfo: ICartesianInfo, coordinate: { x: number, y: number }) => {
+  const { center, unitScale } = cartInfo.axisInfo.pixels
+  return {
+    x: center.x + coordinate.x * unitScale,
+    y: center.y - coordinate.y * unitScale
+  }
+}
+
 const Axis = (cartInfo: ICartesianInfo) => {
   const { center, size, unitScale } = cartInfo.axisInfo.pixels
   const { limits } = cartInfo.axisInfo.coordinates
@@ -80,11 +88,12 @@ const CartesianPlan = () => {
     cartesianCtx.axisInfo.pixels.center.y = (cartesianRef.current?.clientHeight as number)/2
     cartesianCtx.axisInfo.coordinates.limits.x = Math.trunc(cartesianCtx.axisInfo.pixels.center.x / cartesianCtx.axisInfo.pixels.unitScale)
     cartesianCtx.axisInfo.coordinates.limits.y = Math.trunc(cartesianCtx.axisInfo.pixels.center.y / cartesianCtx.axisInfo.pixels.unitScale)
+    cartesianCtx.canvasRef.current.width = cartesianCtx.axisInfo.pixels.size.width;
+    cartesianCtx.canvasRef.current.height = cartesianCtx.axisInfo.pixels.size.height;
   }, []);
 
   useEffect(()=>{
     console.log(cartesianCtx)
-    console.log(cartesianCtx.canvasRef.current.width);
     setAxisState(Axis(cartesianCtx))
   },[cartesianCtx])
 
