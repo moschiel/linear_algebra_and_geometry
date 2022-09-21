@@ -3,7 +3,7 @@ import { ICartesianInfo } from './interfaces';
 import styles from './styles.module.css';
 import { CartesianContext } from '../../contexts/CartesianContext';
 
-const separatorSize = 10
+const SEPARATOR_SIZE = 10
 
 export const CoordinateToPixels = (cartInfo: ICartesianInfo, coordinate: { x: number, y: number }) => {
   const { center, unitScale } = cartInfo.axisInfo.pixels
@@ -20,13 +20,13 @@ const Axis = (cartInfo: ICartesianInfo) => {
 
   const Separator = (axis: 'x'|'y', pos: number) => {
     return axis === 'x'
-      ?<div className={styles.CartesianXSeparator} style={{right: pos, top: -separatorSize/2, height: separatorSize}}></div>
-      :<div className={styles.CartesianYSeparator} style={{top: pos, left: -separatorSize/2, width: separatorSize}}></div>
+      ?<div className={styles.CartesianXSeparator} style={{right: pos, top: -SEPARATOR_SIZE/2, height: SEPARATOR_SIZE}}></div>
+      :<div className={styles.CartesianYSeparator} style={{top: pos, left: -SEPARATOR_SIZE/2, width: SEPARATOR_SIZE}}></div>
   }
   const SeparatorNumber = (axis: 'x'|'y', pos: number, num: number) => {
     return axis === 'x'
-      ?<div className={styles.CartesianXNumber} style={{right: pos-4, top: separatorSize/2}}>{num}</div>
-      :<div className={styles.CartesianYNumber} style={{top: pos-11, right: separatorSize}}>{num}</div>
+      ?<div className={styles.CartesianXNumber} style={{right: pos-4, top: SEPARATOR_SIZE/2}}>{num}</div>
+      :<div className={styles.CartesianYNumber} style={{top: pos-11, right: SEPARATOR_SIZE}}>{num}</div>
   }
   const AuxLine = (axis: 'x'|'y', pos: number) => {
     return axis === 'x'
@@ -76,7 +76,7 @@ const Axis = (cartInfo: ICartesianInfo) => {
   </>
 }
 
-const CartesianPlan = () => {
+export const CartesianPlan = () => {
   const { cartesianCtx } = useContext(CartesianContext)
   const cartesianRef = useRef<HTMLDivElement>(null);
   const [AxisState, setAxisState] = useState<JSX.Element>();
@@ -108,5 +108,3 @@ const CartesianPlan = () => {
     </div>
   </div>
 }
-
-export default CartesianPlan
